@@ -1,0 +1,38 @@
+<div class="row justify-content-evenly">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <form action="/genero" method="POST">
+            <div class="mb-3">
+                <label for="exampleInputNro" class="form-label">Introducir Nro Genero</label>
+                <input type="number" name="nro" placeholder="Introducir Nro Genero" class="form-control"
+                    id="exampleInputNro">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputGenero" class="form-label">Introducir Nombre Genero</label>
+                <input type="text" name="genero" placeholder="Nombre Genero" class="form-control"
+                    id="exampleInputGenero">
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+        <br>
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Nro</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Eliminar</th>
+                    <th scope="col">Editar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each listGenero}}
+                <tr>
+                    <th>{{nro}}</th>
+                    <td>{{nombre}}</td>
+                    <td><a href="/genero/delete/{{nro}}" class="btn btn-danger">Eliminar</a></td>
+                    <td><a href="/genero/modificar/{{nro}}" class="btn btn-warning">Editar</a></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

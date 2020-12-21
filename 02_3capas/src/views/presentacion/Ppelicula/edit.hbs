@@ -1,0 +1,36 @@
+<div class="row justify-content-evenly">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <form action="/pelicula/modificar/{{pelicula.cod}}" method="POST">
+            <div class="mb-3">
+                <label for="exampleInputCodigo" class="form-label"> Codigo</label>
+                <input type="text" name="cod" placeholder="Introducir Codigo" class="form-control"
+                    value="{{pelicula.cod}}" id="exampleInputCodigo" disabled>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputTitulo" class="form-label">Introducir Titulo</label>
+                <input type="text" name="titulo" placeholder="Introducir Titulo" class="form-control"
+                    id="exampleInputTitulo" value="{{pelicula.titulo}}">
+            </div>
+            <div class="row mb-3">
+                <div class="col-6">
+                    <label for="exampleInputDuracion" class="form-label">Introducir Duracion</label>
+                    <input type="number" name="duracion" placeholder="Introducir Duracion" class="form-control"
+                        id="exampleInputDuracion" value="{{pelicula.duracion}}">
+                </div>
+                <div class="col-6">
+                    <label for="exampleInputPrecio" class="form-label">Introducir Precio</label>
+                    <input type="number" name="precio" placeholder="Introducir precio" class="form-control"
+                        id="exampleInputPrecio" value="{{pelicula.precio}}">
+                </div>
+            </div>
+            <label class="form-label">Genero Pelicula</label>
+            <select class="form-select mb-3" name="nro">
+                <option selected value="{{selectGenero.nro}}">{{selectGenero.nombre}}</option>
+                {{#each listGenero}}
+                <option value="{{nro}}">{{nombre}}</option>
+                {{/each}}
+            </select>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+</div>

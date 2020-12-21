@@ -1,0 +1,64 @@
+<div class="row justify-content-evenly">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <form action="/pelicula" method="POST">
+            <div class="mb-3">
+                <label for="exampleInputCodigo" class="form-label">Introducir Codigo</label>
+                <input type="text" name="cod" placeholder="Introducir Codigo" class="form-control"
+                    id="exampleInputCodigo">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputTitulo" class="form-label">Introducir Titulo</label>
+                <input type="text" name="titulo" placeholder="Introducir Titulo" class="form-control"
+                    id="exampleInputTitulo">
+            </div>
+            <div class="row mb-3">
+                <div class="col-6">
+                    <label for="exampleInputDuracion" class="form-label">Introducir Duracion</label>
+                    <input type="number" name="duracion" placeholder="Introducir Duracion" class="form-control"
+                        id="exampleInputDuracion">
+                </div>
+                <div class="col-6">
+                    <label for="exampleInputPrecio" class="form-label">Introducir Precio</label>
+                    <input type="number" name="precio" placeholder="Introducir precio" class="form-control"
+                        id="exampleInputPrecio">
+                </div>
+            </div>
+            <select class="form-select mb-3" aria-label="Default select example" name="nro">
+                <option selected value="0">Seleccionar Genero</option>
+                {{#each listGenero}}
+                <option value="{{nro}}">{{nombre}}</option>
+                {{/each}}
+            </select>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form><br>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Duracion</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Genero</th>
+                    <th scope="col">Eliminar</th>
+                    <th scope="col">Editar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each listPelicula}}
+                <tr>
+                    <th>{{cod}}</th>
+                    <td>{{titulo}}</td>
+                    <td>{{duracion}}</td>
+                    <td>{{precio}}</td>
+                    <td>{{genero}}</td>
+                    <td><a href="/pelicula/delete/{{cod}}" class="btn btn-danger">Eliminar</a></td>
+                    <td><a href="/pelicula/modificar/{{cod}}/{{nro}}" class="btn btn-warning">Editar</a></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
