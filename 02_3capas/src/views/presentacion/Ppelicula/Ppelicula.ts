@@ -8,13 +8,9 @@ class Ppelicula {
   public listGenero: any[];
 
   constructor() {
-    this.config();
     this.listPelicula = [];
     this.listGenero = [];
     this.nPelicula = new Npelicula();
-  }
-
-  config(): void {
     this.listarTabla();
     this.registrar();
     this.eliminar();
@@ -22,7 +18,7 @@ class Ppelicula {
     this.modificar();
   }
 
-  listarTabla() {
+  listarTabla(): void {
     this.router.route("/").get(async (req: Request, res: Response) => {
       const result = await this.nPelicula.getTable();
       this.listPelicula = result || [];
@@ -35,7 +31,7 @@ class Ppelicula {
     });
   }
 
-  registrar() {
+  registrar(): void {
     this.router.route("/").post(async (req: Request, res: Response) => {
       const cod: string = req.body.cod;
       const titulo: string = req.body.titulo;
@@ -53,7 +49,7 @@ class Ppelicula {
     });
   }
 
-  eliminar() {
+  eliminar(): void {
     this.router
       .route("/delete/:cod")
       .get(async (req: Request, res: Response) => {
@@ -63,7 +59,7 @@ class Ppelicula {
       });
   }
 
-  getPelicula() {
+  getPelicula(): void {
     this.router
       .route("/modificar/:cod/:nro")
       .get(async (req: Request, res: Response) => {
@@ -82,7 +78,7 @@ class Ppelicula {
       });
   }
 
-  modificar() {
+  modificar(): void {
     this.router
       .route("/modificar/:cod")
       .post(async (req: Request, res: Response) => {

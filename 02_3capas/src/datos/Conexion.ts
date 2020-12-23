@@ -17,7 +17,7 @@ export class Conexion {
     this.port = 5433;
   }
 
-  isErrorState() {
+  isErrorState(): boolean {
     return this.errorState;
   }
 
@@ -47,7 +47,7 @@ export class Conexion {
     this.connection = null;
   }
 
-  async ejecutarQuery(query: string, params?: string[]) {
+  async ejecutarQuery(query: string, params?: string[]): Promise<any> {
     try {
       const result: any = await this.connection.query(query, params);
       this.errorState = false;

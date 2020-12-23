@@ -18,7 +18,7 @@ export class Dgenero {
     this.nombre = nombre;
   }
 
-  async getTable() {
+  async getTable(): Promise<any> {
     this.conexion.getConexion();
     const query: string = "select * from genero";
     const result = await this.conexion.ejecutarQuery(query, []);
@@ -26,7 +26,7 @@ export class Dgenero {
     return result;
   }
 
-  async guardarGenero() {
+  async guardarGenero(): Promise<any> {
     this.conexion.getConexion();
     const query: string = `INSERT INTO genero (nro,nombre) VALUES
     ($1,$2)`;
@@ -42,7 +42,7 @@ export class Dgenero {
     return 1; // exitoso
   }
 
-  async eliminarGenero() {
+  async eliminarGenero(): Promise<any> {
     this.conexion.getConexion();
     const query: string = `delete from genero where nro=$1`;
     const result = await this.conexion.ejecutarQuery(query, [
@@ -56,7 +56,7 @@ export class Dgenero {
     return 1;
   }
 
-  async getGenero() {
+  async getGenero(): Promise<any> {
     this.conexion.getConexion();
     const query: string = "select * from genero ge where ge.nro=$1";
     const result = await this.conexion.ejecutarQuery(query, [
@@ -66,7 +66,7 @@ export class Dgenero {
     return result;
   }
 
-  async modificarGenero() {
+  async modificarGenero(): Promise<any> {
     this.conexion.getConexion();
     const query: string = `update genero set nombre=$1
     where nro=$2`;

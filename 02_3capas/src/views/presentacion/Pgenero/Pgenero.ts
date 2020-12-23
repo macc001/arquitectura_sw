@@ -7,12 +7,8 @@ class Pgenero {
   public listGenero: any[];
 
   constructor() {
-    this.config();
     this.listGenero = [];
     this.nGenero = new Ngenero();
-  }
-
-  config(): void {
     this.listarTabla();
     this.registrar();
     this.eliminar();
@@ -39,7 +35,7 @@ class Pgenero {
     });
   }
 
-  eliminar() {
+  eliminar(): void {
     this.router
       .route("/delete/:nro")
       .get(async (req: Request, res: Response) => {
@@ -49,7 +45,7 @@ class Pgenero {
       });
   }
 
-  getGenero() {
+  getGenero(): void {
     this.router
       .route("/modificar/:nro")
       .get(async (req: Request, res: Response) => {
@@ -61,7 +57,7 @@ class Pgenero {
       });
   }
 
-  modificar() {
+  modificar(): void {
     this.router
       .route("/modificar/:nro")
       .post(async (req: Request, res: Response) => {

@@ -30,7 +30,7 @@ export class Dpelicula {
     this.nro = nro;
   }
 
-  async getTable() {
+  async getTable(): Promise<any> {
     this.conexion.getConexion();
     const query: string =
       "select pe.cod, pe.titulo, pe.duracion, pe.precio, pe.nro, ge.nombre as genero from pelicula pe, genero ge where pe.nro=ge.nro";
@@ -39,7 +39,7 @@ export class Dpelicula {
     return result;
   }
 
-  async getCombo() {
+  async getCombo(): Promise<any> {
     this.conexion.getConexion();
     const query: string = "select * from genero";
     const result = await this.conexion.ejecutarQuery(query, []);
@@ -47,7 +47,7 @@ export class Dpelicula {
     return result;
   }
 
-  async guardarPelicula() {
+  async guardarPelicula(): Promise<any> {
     this.conexion.getConexion();
     const query: string = `INSERT INTO pelicula (cod,titulo,duracion,precio,nro) VALUES ($1,$2,$3,$4,$5)`;
     const result = await this.conexion.ejecutarQuery(query, [
@@ -65,7 +65,7 @@ export class Dpelicula {
     return 1; // exitoso
   }
 
-  async eliminarPelicula() {
+  async eliminarPelicula(): Promise<any> {
     this.conexion.getConexion();
     const query: string = `delete from pelicula where cod=$1`;
     const result = await this.conexion.ejecutarQuery(query, [this.cod]);
@@ -77,7 +77,7 @@ export class Dpelicula {
     return 1;
   }
 
-  async getPelicula() {
+  async getPelicula(): Promise<any> {
     this.conexion.getConexion();
     const query: string = "select * from pelicula pe where pe.cod=$1";
     const result = await this.conexion.ejecutarQuery(query, [this.cod]);
@@ -85,7 +85,7 @@ export class Dpelicula {
     return result;
   }
 
-  async getComboCod() {
+  async getComboCod(): Promise<any> {
     this.conexion.getConexion();
     const query: string =
       "select ge.nro, ge.nombre from genero ge order by ge.nro=$1 desc";
@@ -96,7 +96,7 @@ export class Dpelicula {
     return result;
   }
 
-  async modificarPelicula() {
+  async modificarPelicula(): Promise<any> {
     this.conexion.getConexion();
     const query: string =
       "update pelicula set titulo=$2, duracion=$3, precio=$4, nro=$5    where cod=$1";

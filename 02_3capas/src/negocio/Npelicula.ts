@@ -2,13 +2,15 @@ import { Dpelicula } from "../datos/Dpelicula";
 export class Npelicula {
   public dPelicula: Dpelicula;
 
-  async getTable() {
+  constructor() {
     this.dPelicula = new Dpelicula();
+  }
+
+  async getTable(): Promise<any> {
     return await this.dPelicula.getTable();
   }
 
-  async getGenero() {
-    this.dPelicula = new Dpelicula();
+  async getGenero(): Promise<any> {
     return await this.dPelicula.getCombo();
   }
 
@@ -18,8 +20,7 @@ export class Npelicula {
     duracion: number,
     precio: number,
     nro: number
-  ) {
-    this.dPelicula = new Dpelicula();
+  ): Promise<any> {
     this.dPelicula.setCod(cod);
     this.dPelicula.setTitulo(titulo);
     this.dPelicula.setDuracion(duracion);
@@ -28,20 +29,17 @@ export class Npelicula {
     return await this.dPelicula.guardarPelicula();
   }
 
-  async eliminar(cod: string) {
-    this.dPelicula = new Dpelicula();
+  async eliminar(cod: string): Promise<any> {
     this.dPelicula.setCod(cod);
     return await this.dPelicula.eliminarPelicula();
   }
 
-  async getPelicula(cod: string) {
-    this.dPelicula = new Dpelicula();
+  async getPelicula(cod: string): Promise<any> {
     this.dPelicula.setCod(cod);
     return await this.dPelicula.getPelicula();
   }
 
-  async getGeneroCod(nro: number) {
-    this.dPelicula = new Dpelicula();
+  async getGeneroCod(nro: number): Promise<any> {
     this.dPelicula.setNro(nro);
     return await this.dPelicula.getComboCod();
   }
@@ -52,8 +50,7 @@ export class Npelicula {
     duracion: number,
     precio: number,
     nro: number
-  ) {
-    this.dPelicula = new Dpelicula();
+  ): Promise<any> {
     this.dPelicula.setCod(cod);
     this.dPelicula.setTitulo(titulo);
     this.dPelicula.setDuracion(duracion);
