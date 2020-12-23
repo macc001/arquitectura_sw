@@ -81,4 +81,23 @@ export class Dgenero {
     }
     return 1;
   }
+
+  async getCombo(): Promise<any> {
+    this.conexion.getConexion();
+    const query: string = "select * from genero";
+    const result = await this.conexion.ejecutarQuery(query, []);
+    this.conexion.cerrarConexion();
+    return result;
+  }
+
+  async getComboCod(): Promise<any> {
+    this.conexion.getConexion();
+    const query: string =
+      "select ge.nro, ge.nombre from genero ge order by ge.nro=$1 desc";
+    const result = await this.conexion.ejecutarQuery(query, [
+      this.nro.toString(),
+    ]);
+    this.conexion.cerrarConexion();
+    return result;
+  }
 }

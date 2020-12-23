@@ -31,4 +31,13 @@ export class Ngenero {
     this.dGenero.setNombre(genero);
     return await this.dGenero.modificarGenero();
   }
+
+  async getGener(): Promise<any> {
+    return await this.dGenero.getCombo();
+  }
+
+  async getGeneroCod(nro: number): Promise<any> {
+    this.dGenero.setNro(nro);
+    return await this.dGenero.getComboCod();
+  }
 }

@@ -39,14 +39,6 @@ export class Dpelicula {
     return result;
   }
 
-  async getCombo(): Promise<any> {
-    this.conexion.getConexion();
-    const query: string = "select * from genero";
-    const result = await this.conexion.ejecutarQuery(query, []);
-    this.conexion.cerrarConexion();
-    return result;
-  }
-
   async guardarPelicula(): Promise<any> {
     this.conexion.getConexion();
     const query: string = `INSERT INTO pelicula (cod,titulo,duracion,precio,nro) VALUES ($1,$2,$3,$4,$5)`;
@@ -81,17 +73,6 @@ export class Dpelicula {
     this.conexion.getConexion();
     const query: string = "select * from pelicula pe where pe.cod=$1";
     const result = await this.conexion.ejecutarQuery(query, [this.cod]);
-    this.conexion.cerrarConexion();
-    return result;
-  }
-
-  async getComboCod(): Promise<any> {
-    this.conexion.getConexion();
-    const query: string =
-      "select ge.nro, ge.nombre from genero ge order by ge.nro=$1 desc";
-    const result = await this.conexion.ejecutarQuery(query, [
-      this.nro.toString(),
-    ]);
     this.conexion.cerrarConexion();
     return result;
   }

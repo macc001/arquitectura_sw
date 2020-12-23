@@ -1,16 +1,19 @@
 import { Router, Request, Response } from "express";
 import { Npelicula } from "../../../negocio/Npelicula";
+import { Ngenero } from "../../../negocio/Ngenero";
 
 class Ppelicula {
   public router: Router = Router();
-  public nPelicula: Npelicula;
   public listPelicula: any[];
   public listGenero: any[];
+  public nPelicula: Npelicula;
+  public nGenero: Ngenero;
 
   constructor() {
     this.listPelicula = [];
     this.listGenero = [];
     this.nPelicula = new Npelicula();
+    this.nGenero = new Ngenero();
     this.listarTabla();
     this.registrar();
     this.eliminar();
@@ -20,10 +23,10 @@ class Ppelicula {
 
   listarTabla(): void {
     this.router.route("/").get(async (req: Request, res: Response) => {
+      const resultGen = await this.nGenero.getGener();
+      this.listGenero = resultGen || [];
       const result = await this.nPelicula.getTable();
       this.listPelicula = result || [];
-      const resultGen = await this.nPelicula.getGenero();
-      this.listGenero = resultGen || [];
       res.render("presentacion/Ppelicula/pelicula", {
         listPelicula: this.listPelicula,
         listGenero: this.listGenero,
@@ -65,8 +68,8 @@ class Ppelicula {
       .get(async (req: Request, res: Response) => {
         const cod: string = req.params.cod;
         const nro: number = Number(req.params.nro);
+        const resultGen = await this.nGenero.getGeneroCod(nro);
         const getPelicula = await this.nPelicula.getPelicula(cod);
-        const resultGen = await this.nPelicula.getGeneroCod(nro);
         this.listGenero = resultGen || [];
         const selectGenero = this.listGenero[0];
         this.listGenero.shift();

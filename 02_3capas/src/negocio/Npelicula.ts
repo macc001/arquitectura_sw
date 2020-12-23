@@ -10,10 +10,6 @@ export class Npelicula {
     return await this.dPelicula.getTable();
   }
 
-  async getGenero(): Promise<any> {
-    return await this.dPelicula.getCombo();
-  }
-
   async setPelicula(
     cod: string,
     titulo: string,
@@ -37,11 +33,6 @@ export class Npelicula {
   async getPelicula(cod: string): Promise<any> {
     this.dPelicula.setCod(cod);
     return await this.dPelicula.getPelicula();
-  }
-
-  async getGeneroCod(nro: number): Promise<any> {
-    this.dPelicula.setNro(nro);
-    return await this.dPelicula.getComboCod();
   }
 
   async modificar(
